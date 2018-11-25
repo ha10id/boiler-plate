@@ -1,7 +1,14 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <el-row type="flex" justify="center" v-for="o in 44" :key="o">
+      <el-col :span="23">
+        <el-card class="box-card" shadow="hover">  
+          <div class="text item">
+            {{'List item ' + o }}
+          </div>
+        </el-card>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -16,3 +23,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.box-card {
+  margin: 2px;
+}
+</style>
