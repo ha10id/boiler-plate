@@ -1,38 +1,27 @@
 <template>
   <div id="app" class="app">
-    <el-menu
-      :default-active="activeIndex"
-      class="header"
-      mode="horizontal"
-      @select="handleSelect"
-      background-color="#545c64"
-      text-color="#fff"
-      active-text-color="#ffd04b">
-      <el-menu-item index="1">Processing Center</el-menu-item>
-      <el-submenu index="2">
-        <template slot="title">Workspace</template>
-        <el-menu-item index="2-1">item one</el-menu-item>
-        <el-menu-item index="2-2">item two</el-menu-item>
-        <el-menu-item index="2-3">item three</el-menu-item>
-        <el-submenu index="2-4">
-          <template slot="title">item four</template>
-          <el-menu-item index="2-4-1">item one</el-menu-item>
-          <el-menu-item index="2-4-2">item two</el-menu-item>
-          <el-menu-item index="2-4-3">item three</el-menu-item>
-        </el-submenu>
-      </el-submenu>
-      <!--<el-menu-item index="3" disabled>Info</el-menu-item>-->
-      <!--<el-menu-item index="4"><a href="https://www.ele.me" target="_blank">Orders</a></el-menu-item>-->
-    </el-menu>
+    <navigation/>
+
     <div class="content">
       <router-view/>
     </div>
-    <div class="footer"><a href="#">@2018. Mars Weapons Inc.</a></div>
+    <sqreen-footer/>
   </div>
 </template>
 
 <script>
+
+import Navigation from '@/components/navigation'
+import SqreenFooter from '@/components/footer/index.vue'
+import { USER_REQUEST } from '@/actions/user'
+
 export default {
+  components: { Navigation, SqreenFooter },  
+   created: function () {
+    if (this.$store.getters.isAuthenticated) {
+      this.$store.dispatch(USER_REQUEST)
+    }
+  },
   data() {
     return {
       activeIndex: '1'
@@ -50,12 +39,15 @@ export default {
 body {
   padding: 0;
   margin: 0;
+  font-family: 'Roboto', sans-serif;
+  color: #2e426b;
 }
+
 
 #app {
   padding: 0;
   margin: 0;
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  /*font-family: 'Avenir', Helvetica, Arial, sans-serif;*/
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -89,21 +81,7 @@ body {
   /*overflow-y:auto;*/
 }
 .footer {
-  height:16px;
+  height:18px;
   flex-shrink: 0;
-  background-color: #545c64;
-  text-align:center;
-  vertical-align: baseline;
-  color:#ffd04b;
-}
-.footer a {
-  font-size: 10px;
-  margin:auto;
-  text-decoration: none;
-  color:#ffd04b;
-}
-.footer a:hover {
-  font-weight:bold;
-  color:#ffd04b;
 }
 </style>
