@@ -7,10 +7,10 @@
     background-color="#545c64"
     text-color="#fff"
     active-text-color="#ffd04b">
-    <el-menu-item index="1">Processing Center</el-menu-item>
-    <el-menu-item v-if="isProfileLoaded" @click="profile" style="float: right;" index="2">Profile</el-menu-item>
-    <el-menu-item v-if="isAuthenticated" @click="logout" style="float: right;" index="3">Logout</el-menu-item>
-    <el-menu-item v-if="!isAuthenticated && !authLoading" style="float: right;" index="4">Login</el-menu-item>
+    <el-menu-item index="1">Обрабатывающий центр</el-menu-item>
+    <el-menu-item v-if="isProfileLoaded" @click="profile" style="float: right;" index="2">Профиль</el-menu-item>
+    <el-menu-item v-if="isAuthenticated" @click="logout" style="float: right;" index="3">Выход</el-menu-item>
+    <el-menu-item v-if="!isAuthenticated && !authLoading" style="float: right;" index="4">Вход</el-menu-item>
   </el-menu>
 </template>
 
@@ -28,7 +28,7 @@
 
 <script>
 import { mapGetters, mapState } from 'vuex'
-import { AUTH_LOGOUT } from '@/actions/auth'
+import { AUTH_LOGOUT } from '@/store/actions/auth'
 
 export default {
   name: 'navigation',

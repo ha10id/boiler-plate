@@ -7,7 +7,7 @@
         </div>
         <el-input required v-model="username" type="text" suffix-icon="el-icon-edit" placeholder="Пользователь"></el-input>
         <el-input required v-model="password" type="password" suffix-icon="el-icon-edit" placeholder="Пароль"></el-input>
-        <el-button type="primary" native-type="submit">Login</el-button>
+        <el-button type="primary" native-type="submit" :loading="loading">Login</el-button>
       </el-card>
     </form>
   </div>
@@ -41,7 +41,8 @@
 </style>
 
 <script>
-import {AUTH_REQUEST} from '@/actions/auth'
+import {AUTH_REQUEST} from '@/store/actions/auth'
+
 
 export default {
   name: 'login',
@@ -49,11 +50,13 @@ export default {
     return {
       username: 'dogo',
       password: 'dogy',
+      loading: false,
     }
   },
   methods: {
     login: function () {
       const { username, password } = this
+      this.loading = true
       this.$store.dispatch(AUTH_REQUEST, { username, password }).then(() => {
         this.$router.push('/')
       })

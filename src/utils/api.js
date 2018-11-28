@@ -1,6 +1,7 @@
 const mocks = {
   'auth': { 'POST': { token: 'This-is-a-mocked-token' } },
-  'user/me': { 'GET': { name: 'doggo', title: 'sir' } }
+  'user/me': { 'GET': { name: 'doggo', title: 'sir' } },
+  'documents/100': { 'GET': { name: 'doggo', title: 'sir' } },
 }
 
 const apiCall = ({url, method, ...args}) => new Promise((resolve, reject) => {
@@ -12,7 +13,7 @@ const apiCall = ({url, method, ...args}) => new Promise((resolve, reject) => {
     } catch (err) {
       reject(new Error(err))
     }
-  }, 1000)
+  }, 4000)
 })
 
 export default apiCall

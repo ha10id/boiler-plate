@@ -1,19 +1,10 @@
-import faker from 'faker'
-
-function feedGenerator (nb) {
+import axios from 'axios'
+let image = 'https://control26.ru/documents/2018/11/27/1059580395/IMG_20181126_075422_HDR.jpg'
+function getResponse (nb) {
   let res = []
-  for (var i = 1; i <= nb; i++) {
-    res.push(generateFeed())
-  }
+    axios
+      .get('https://api.coindesk.com/v1/bpi/currentprice.json')
+      .then(response => (res = response));
   return res
-};
-
-function generateFeed () {
-  return {
-		image: `${faker.image.image()}`,
-    name: `${faker.name.firstName()} ${faker.name.lastName()}`,
-    content: faker.random.words(20),
-  }
 }
-
-export default feedGenerator(10)
+export default getResponse(10)
